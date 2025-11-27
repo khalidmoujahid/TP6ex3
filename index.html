@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide JavaScript - Manipulation du DOM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Guide Complet JavaScript</h1>
+            <p class="subtitle">Manipulation du Document Object Model (DOM)</p>
+        </header>
+
+        <div class="content-grid">
+            <div class="card">
+                <h2>1. Éléments de la page</h2>
+                <p>Les objets globaux <span class="highlight">window</span> et <span class="highlight">document</span> sont les points d'entrée pour manipuler le DOM.</p>
+                
+                <div class="code-block">
+// Accéder aux propriétés du document
+console.log("Titre:", document.title);
+console.log("URL:", document.URL);
+console.log("Encodage:", document.characterSet);
+                </div>
+                
+                <div class="demo-area">
+                    <button onclick="showDocumentInfo()">Afficher les infos du document</button>
+                    <div id="documentInfo" class="element-display"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>2. Sélecteurs DOM</h2>
+                <p>Différentes méthodes pour sélectionner des éléments dans le document.</p>
+                
+                <div class="code-block">
+// Sélection par ID
+let elem = document.getElementById('monId');
+
+// Sélection par classe
+let classes = document.getElementsByClassName('maClasse');
+
+// Sélection par balise
+let tags = document.getElementsByTagName('div');
+
+// Sélecteurs CSS modernes
+let query = document.querySelector('.maClasse');
+let queryAll = document.querySelectorAll('div.maClasse');
+                </div>
+                
+                <div class="demo-area">
+                    <button onclick="testSelectors()">Tester les sélecteurs</button>
+                    <div id="selectorResults" class="element-display"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>3. Modification du contenu</h2>
+                <p><span class="highlight">innerHTML</span> et <span class="highlight">textContent</span> pour modifier le contenu des éléments.</p>
+                
+                <div class="code-block">
+let elem = document.getElementById('monElement');
+
+// innerHTML - interprète le HTML
+elem.innerHTML = '&lt;strong&gt;Nouveau contenu&lt;/strong&gt;';
+
+// textContent - texte brut seulement
+elem.textContent = 'Juste du texte sans balises';
+                </div>
+                
+                <div class="demo-area">
+                    <div id="contentDemo" class="example-box">
+                        Contenu initial
+                    </div>
+                    <button onclick="changeWithHTML()">Changer avec HTML</button>
+                    <button onclick="changeWithText()">Changer avec texte</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>4. Gestion des attributs</h2>
+                <p>Manipulation des attributs HTML avec <span class="highlight">getAttribute</span> et <span class="highlight">setAttribute</span>.</p>
+                
+                <div class="code-block">
+let link = document.getElementById('monLien');
+
+// Obtenir un attribut
+let href = link.getAttribute('href');
+
+// Définir un attribut
+link.setAttribute('target', '_blank');
+link.setAttribute('data-custom', 'valeur');
+                </div>
+                
+                <div class="demo-area">
+                    <a id="demoLink" href="https://www.example.com">Lien de démonstration</a>
+                    <div style="margin-top: 10px;">
+                        <button onclick="showLinkAttributes()">Voir les attributs</button>
+                        <button onclick="modifyLinkAttributes()">Modifier les attributs</button>
+                    </div>
+                    <div id="attributeInfo" class="element-display"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>5. Modification des styles CSS</h2>
+                <p>Modification directe des styles via la propriété <span class="highlight">style</span>.</p>
+                
+                <div class="code-block">
+let element = document.getElementById('monElement');
+
+// Modifier les styles
+element.style.color = 'red';
+element.style.backgroundColor = 'yellow';
+element.style.fontSize = '20px';
+element.style.padding = '10px';
+                </div>
+                
+                <div class="demo-area">
+                    <div id="styleDemo" class="example-box">
+                        Élément de style démonstration
+                    </div>
+                    <button onclick="applyStyles()">Appliquer les styles</button>
+                    <button onclick="resetStyles()">Réinitialiser</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>6. Gestion des classes CSS</h2>
+                <p>Utilisation de <span class="highlight">classList</span> pour manipuler les classes.</p>
+                
+                <div class="code-block">
+let elem = document.getElementById('monElement');
+
+// Ajouter une classe
+elem.classList.add('active', 'highlight');
+
+// Supprimer une classe
+elem.classList.remove('inactive');
+
+// Basculer une classe
+elem.classList.toggle('visible');
+
+// Vérifier la présence
+if (elem.classList.contains('active')) {
+    console.log('Élément actif');
+}
+                </div>
+                
+                <div class="demo-area">
+                    <div id="classDemo" class="example-box">
+                        Démonstration des classes
+                    </div>
+                    <button onclick="addClass()">Ajouter classe</button>
+                    <button onclick="removeClass()">Supprimer classe</button>
+                    <button onclick="toggleClass()">Basculer classe</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>7. Création et manipulation d'éléments</h2>
+                <p>Création dynamique d'éléments et manipulation de la structure DOM.</p>
+                
+                <div class="code-block">
+// Créer un nouvel élément
+let newDiv = document.createElement('div');
+newDiv.textContent = 'Nouvel élément créé';
+
+// Ajouter au DOM
+document.body.appendChild(newDiv);
+
+// Supprimer un élément
+let oldElem = document.getElementById('ancien');
+document.body.removeChild(oldElem);
+
+// Remplacer un élément
+let replacement = document.createElement('span');
+replacement.textContent = 'Élément de remplacement';
+document.body.replaceChild(replacement, oldElem);
+                </div>
+                
+                <div class="demo-area">
+                    <div id="elementCreationArea" class="example-box">
+                        Zone de création d'éléments
+                    </div>
+                    <button onclick="createNewElement()">Créer un élément</button>
+                    <button onclick="removeLastElement()">Supprimer le dernier</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>8. Gestion des événements</h2>
+                <p>Utilisation de <span class="highlight">addEventListener</span> pour gérer les interactions utilisateur.</p>
+                
+                <div class="code-block">
+let button = document.getElementById('monBouton');
+
+// Ajouter un écouteur d'événement
+button.addEventListener('click', function() {
+    alert('Bouton cliqué!');
+});
+
+// Événement avec paramètres
+button.addEventListener('mouseover', function(event) {
+    console.log('Souris sur le bouton', event);
+});
+                </div>
+                
+                <div class="demo-area">
+                    <button id="eventButton">Bouton avec événements</button>
+                    <div id="eventLog" class="element-display" style="min-height: 80px;"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>9. Gestion du temps</h2>
+                <p>Utilisation de <span class="highlight">setTimeout</span> et <span class="highlight">setInterval</span> pour l'exécution différée.</p>
+                
+                <div class="code-block">
+// Exécuter après délaiSSS
+setTimeout(function() {
+    console.log('Exécuté après 2 secondes');
+}, 2000);
+
+// Exécuter à intervalle régulier
+let counter = 0;
+let interval = setInterval(function() {
+    counter++;
+    console.log('Compteur:', counter);
+    
+    if (counter >= 5) {
+        clearInterval(interval);
+    }
+}, 1000);
+                </div>
+                
+                <div class="demo-area">
+                    <button onclick="startTimer()">Démarrer le minuteur</button>
+                    <button onclick="startCounter()">Démarrer le compteur</button>
+                    <div id="timerDisplay" class="element-display"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card interactive-demo">
+            <h2>Démonstration Interactive Complète</h2>
+            <p>Créez et manipulez des éléments en temps réel :</p>
+            
+            <div style="margin: 20px 0;">
+                <input type="text" id="elementText" placeholder="Texte de l'élément" style="padding: 10px; width: 200px; margin-right: 10px;">
+                <select id="elementType" style="padding: 10px; margin-right: 10px;">
+                    <option value="div">Div</option>
+                    <option value="p">Paragraphe</option>
+                    <option value="span">Span</option>
+                    <option value="button">Bouton</option>
+                </select>
+                <button onclick="createCustomElement()">Créer l'élément</button>
+            </div>
+            
+            <div id="interactiveArea" class="example-box" style="min-height: 150px;">
+            </div>
+            
+            <div style="margin-top: 15px;">
+                <button onclick="clearInteractiveArea()">Tout effacer</button>
+                <button onclick="addRandomStyle()">Style aléatoire</button>
+            </div>
+        </div>
+
+        <footer>
+            <p>Guide JavaScript - Manipulation du DOM &copy; 2025</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
